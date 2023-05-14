@@ -38,7 +38,7 @@ def setup_module(request):
 
     # Сюда пишем то, что должно выполниться перед всеми тестами в этом файле
 
-    # Определяем название браузера из параметров запуска
+    # Забираем параметры запуска (если указаны не были, то дэфолтные значения)
     request.keywords['browser_name'] = request.config.getoption('browser_name')
     request.keywords['window_size'] = request.config.getoption('window_size')
     request.keywords['headless'] = request.config.getoption('headless')
