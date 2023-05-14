@@ -30,7 +30,7 @@ def find_key(key: str = None, json_data: json = None) -> dict | None:
 
 def get_dict_with_value_from_json(json_obj: json = None, key: str = None, value: str = None) -> dict | None:
     """
-    Функция для рекурсивного поиска словаря, в котором находится целевое значения
+    Функция для рекурсивного поиска словаря, в котором находится целевое значение
 
     Возвращает:
     - Словарь, в котором найдено значение.
