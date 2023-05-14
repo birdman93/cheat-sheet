@@ -6,7 +6,7 @@ from selenium import webdriver
 
 def pytest_addoption(parser):
     """
-    Создание параметров запуска тестов, управляться которыми нужно из консоли
+    Создание параметров запуска тестов, управлять которыми нужно из консоли
     """
 
     parser.addoption('--browser_name',

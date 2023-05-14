@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 class BaseParser:
     """
-    Базовый класс для работы с xml файлами, в котором инициализуруем ElementTree, а также объявляем словарь с
+    Базовый класс для работы с xml-файлами, в котором инициализуруем ElementTree, а также объявляем словарь с
     пространством имен
     """
     def __init__(self, path_to_xml_file: str):
