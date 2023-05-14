@@ -1,4 +1,13 @@
+import pytest
 import importlib
+
+
+def pytest_addoption(parser):
+    """
+    Создание параметров запуска тестов, управлять которыми нужно из консоли
+    """
+
+    pass # см. ui-conftest.py
 
 
 # = = = = = = = = = = = =
