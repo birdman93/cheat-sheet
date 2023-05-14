@@ -1,17 +1,6 @@
 import pytest
-import allure
-import importlib
-import config
-import json
-
-import common.bindings.oncopassport.ui_backend as ui_backend
-import common.bindings.oncopassport.cd_proxy as cd_proxy
-import common.bindings.oncopassport.mongo_db as mongo_db
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-
-from selenium.webdriver.common.by import By
-from common.utils.state import State
 from selenium import webdriver
 
 
