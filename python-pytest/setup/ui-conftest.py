@@ -78,7 +78,7 @@ def browser(request):
         browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
 
     else:
-        raise pytest.UsageError('-- choose browser name and get as param')
+        raise pytest.UsageError('-- re-check the test run parameters')
 
     browser.implicitly_wait(10)
 
