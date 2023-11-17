@@ -2,43 +2,6 @@ from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError, InvalidOperation
 
 
-current_connection = [] # хранилище доступных подключений
-
-
-def connect_database_server(server_host: str, server_port: int) -> MongoClient:
-    """
-    Устанавливает подключение с сервером баз данных MongoDB, где
-        server_host: str, адрес сервера базы данных, для подключения
-        server_port: int, порт на котором ожидается подключение берет дефолтные данные из конфига
-    """
-
-    # проверим нет ли действующих подключений
-    while len(current_connection) > 0:
-
-        try:
-            current_connection[-1].admin.command('ping')
-            conn = current_connection[-1]
-            return conn
-
-        except (ServerSelectionTimeoutError, InvalidOperation):
-            current_connection.pop(-1)
-
-    # если нет, создадим новое
-    else:
-        conn = MongoClient(server_host, server_port)
-
-        # проверим что подключение успешно
-        try:
-            conn.admin.command('ping')
-
-        except ServerSelectionTimeoutError:
-            raise ConnectionError(
-                f"не удалось подключиться к серверу баз данных. HOST: {server_host}, PORT: {server_port}")
-
-        current_connection.append(conn)
-        return conn
-
-
 def get_list_databases(session: MongoClient) -> list:
     """
     Возвращает массив с названиями найденных БД

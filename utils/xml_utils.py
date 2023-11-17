@@ -1,5 +1,5 @@
-import xml.etree.ElementTree as ET
-
+# import xml.etree.ElementTree as ET
+import lxml.etree as ET
 
 class BaseParser:
     """
@@ -10,26 +10,42 @@ class BaseParser:
         self.__ET = ET
         self.semd_name = path_to_xml_file
         self.__tree = self.__ET.parse(path_to_xml_file)
-        self.__namespaces = {
+        self.namespaces = {
             'key_1': 'value_1',
             'key_2': 'value_2'
         }
 
+        for key, value in self.namespaces.items():
+            ET.register_namespace(key, value)
+
     def _find_element(self, xpath: str) -> ET.Element:
         """Возвращает ET-элемент по xpath"""
-        return self.__tree.find(xpath, self.__namespaces)
+        return self.__tree.find(xpath, self.namespaces)
 
     def _find_all_elements(self, xpath: str) -> list[ET.Element]:
         """Возвращает список ET-элементов по xpath"""
-        return self.__tree.findall(xpath, self.__namespaces)
+        return self.__tree.findall(xpath, self.namespaces)
+
+    def _xpath(self, xpath: str) -> list[ET.Element]:
+        """Возвращает список ET-элементов по xpath"""
+        return self.__tree.xpath(xpath, namespaces=self.namespaces)
+
+    def _xpaths_handler(self, xpaths: list) -> list[ET.Element]:
+        """Принимает список xpaths, возвращает список ET-элементов по первому результативному xpath"""
+        for xpath in xpaths:
+            result = self._xpath(xpath)
+            if result:
+                found_value = result
+                return found_value
 
     @staticmethod
-    def replace_element_text(element: ET.Element, value: str):
+    def _replace_element_text(element: ET.Element, value: str):
         """Заменяет текст тэга элемента"""
-        element.text = value
+        if element is not None:
+            element.text = value
 
     @staticmethod
-    def replace_element_attribute(element: ET.Element, attr: str, value: str):
+    def _replace_element_attribute(element: ET.Element, attr: str, value: str):
         """Заменяет значение атрибута у переданного элемента"""
         element.set(attr, value)
 
