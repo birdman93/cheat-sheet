@@ -10,10 +10,10 @@ models = {
     }
 
 
-def speech_recognition(model='base'):
+def speech_recognition(model: str ='base', path_to_audio: str = None):
 
     speech_model = whisper.load_model(model)
-    result = speech_model.transcribe(audio="D:\\Coding\\Python Experiments\\SpeechToText\\track.mp3", fp16=False)
+    result = speech_model.transcribe(audio=path_to_audio, fp16=False)
 
     with open(f"transcription_{model}.txt", 'w', encoding='utf-8') as file:
         print(result)
