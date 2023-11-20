@@ -68,13 +68,6 @@ def subtract_years_months_days_to_date(date: datetime.date = None,
     return new_date
 
 
-def is_leap_year(year: int = None):
-    """
-    Определяет високосные года
-    """
-    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
-
-
 def random_date_from_range(start_date: datetime.date = None, end_date: datetime.date = None) -> datetime.date:
     """
     Возвращает случайную дату из заданного диапазона
