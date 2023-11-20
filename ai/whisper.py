@@ -10,7 +10,7 @@ models = {
     }
 
 
-def speech_recognition(model: str ='base', path_to_audio: str = None):
+def speech_recognition(model: str = 'base', path_to_audio: str = None):
 
     speech_model = whisper.load_model(model)
     result = speech_model.transcribe(audio=path_to_audio, fp16=False)
