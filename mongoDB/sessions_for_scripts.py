@@ -43,4 +43,5 @@ def script_for_mongo(db_host: str,
                 # Core-логика скрипта тут
 
         except StopIteration:
-            mongo_docs.close()
+            # Можно вывести инфу о завершении работы скрипта, сессия с Монгой схлопнется сама благодаря with
+            pass
